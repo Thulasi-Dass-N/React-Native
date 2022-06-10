@@ -1,10 +1,6 @@
 import React from 'react'
-import {View, Text} from 'react-native';
+import PostsList from '../Components/PostsList';
 const PostsScreen = () => {
-  return (
-    <View>
-      <Text>Hello</Text>
-    </View>
-  );
+  return <PostsList />;
 };
 export default PostsScreen;

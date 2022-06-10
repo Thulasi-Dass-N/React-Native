@@ -1,10 +1,6 @@
 import React from 'react'
-import {View, Text} from 'react-native';
+import CommentsList from '../Components/CommentsList'
 const CommentsScreen = () => {
-  return (
-    <View>
-      <Text>Welcome</Text>
-    </View>
-  );
+  return <CommentsList />;
 };
 export default CommentsScreen;
