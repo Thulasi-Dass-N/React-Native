@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Button, Pressable} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 function UserList() {
@@ -16,14 +16,10 @@ function UserList() {
       });
   };
 
+  useEffect(getData, []);
+
   return (
     <View>
-      <Button
-        title="Get Data"
-        onPress={() => {
-          getData();
-        }}
-      />
       {data.map(user => (
         <View key={user.id}>
           <Pressable
@@ -36,5 +32,5 @@ function UserList() {
       ))}
     </View>
   );
-};
+}
 export default UserList;

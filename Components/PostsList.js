@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Button, Pressable} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 function PostsList() {
@@ -17,14 +17,16 @@ function PostsList() {
       });
   };
 
+  useEffect(getData, []);
+
   return (
     <View>
-      <Button
+      {/* <Button
         title="Get Data"
         onPress={() => {
           getData();
         }}
-      />
+      /> */}
       {data.map(user => (
         <View key={user.id}>
           <Pressable
