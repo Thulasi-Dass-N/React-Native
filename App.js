@@ -5,12 +5,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import UsersScreen from './Screens/UserScreen';
 import PostsScreen from './Screens/PostsScreen';
 import CommentsScreen from './Screens/Comments';
+import Login from './Screens/Login';
 
 function HomeScreen({navigation}) {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text>Home Screen</Text>
-      <Button title="User" onPress={() => navigation.navigate('Users')} />
+      <Button title="User" onPress={() => navigation.navigate('Login')} />
     </View>
   );
 }
@@ -22,6 +23,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Users" component={UsersScreen} />
         <Stack.Screen name="Posts" component={PostsScreen} />
         <Stack.Screen name="Comments" component={CommentsScreen} />
