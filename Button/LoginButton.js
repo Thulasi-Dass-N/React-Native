@@ -2,12 +2,19 @@ import React from 'react';
 import {View, StyleSheet, TouchableOpacity, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 TouchableOpacity.defaultProps = {activeOpacity: 0.8};
-export const CBtn = ({title, onPress}) => {
+export const CBtn = ({title, onPress, Validate}) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={styles.screen}>
-        <Text onPress={() => navigation.navigate('Users')} style={styles.Text}>
+        <Text
+          //onPress={Validate}
+          onPress={( (e) => {
+            if (Validate(e)) {
+              navigation.navigate('Users');
+            }
+          })}
+          style={styles.Text}>
           {title}
         </Text>
       </View>

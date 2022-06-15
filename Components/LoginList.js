@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Image,
@@ -12,6 +12,23 @@ import {CBtn} from '../Button/LoginButton';
 const Separator = () => <View style={styles.separator} />;
 
 const LoginList = () => {
+  const [credential, setCredential] = useState({username: '', password: ''});
+  const [errorMessage, setErrorMessage] = useState({
+    username: '',
+    password: '',
+  });
+  const Validate = e => {
+    //e.preventDefault();
+    let error = false;
+    if (credential.username === '') {
+      setErrorMessage({username: 'Username Required'});
+      error = true;
+    } else if (credential.password === '') {
+      setErrorMessage({password: 'password Required'});
+      error = true;
+    }
+    return !error;
+  };
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -22,17 +39,36 @@ const LoginList = () => {
           resizeMode="center"
           style={styles.style3}
         />
+        <Separator />
       </View>
       <View>
         <Text style={styles.Text}>User Name</Text>
-        <TextInput style={styles.input} />
+        <TextInput
+          style={styles.input}
+          onChange={e => {
+            setCredential({...credential, username: e.target.value});
+          }}
+        />
+        <Text style={{textAlign: 'center', color: 'red'}}>
+          {errorMessage.username && 'Error'}
+        </Text>
         <Text style={styles.Text}>Password</Text>
-        <TextInput style={styles.input} />
+        <TextInput
+          style={styles.input}
+          onChange={e => {
+            setCredential({...credential, password: e.target.value});
+          }}
+        />
+        <Text style={{textAlign: 'center'}}>
+          {errorMessage.password && 'Error'}
+        </Text>
+
         <Text style={styles.style4}>Forget Password</Text>
       </View>
       <Separator />
-
-      <CBtn title={'Login'} />
+      <View>
+        <CBtn title={'Login'} Validate={Validate} />
+      </View>
     </KeyboardAvoidingView>
   );
 };
@@ -61,7 +97,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'white',
   },
-  style2: {alignItems: 'center', marginTop: -90, marginBottom: 80, margin: 55},
+  style2: {
+    alignItems: 'center',
+    marginTop: 40,
+    marginBottom: 80,
+    margin: 55,
+    justifyContent: 'flex-start',
+  },
   style3: {width: 100, height: 100, backgroundColor: '#C4C3BD'},
   style4: {textAlign: 'center'},
 });
