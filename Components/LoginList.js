@@ -5,47 +5,34 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  Button,
   Platform,
   KeyboardAvoidingView,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {CBtn} from '../Button/LoginButton';
 const Separator = () => <View style={styles.separator} />;
+
 const LoginList = () => {
-  const navigation = useNavigation();
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={{flex: 1, justifyContent: 'center', backgroundColor: 'white'}}>
-      <View
-        style={{
-          alignItems: 'center',
-          marginTop: -90,
-           marginBottom: 100,
-          margin: 45,
-        }}>
+      style={styles.style1}>
+      <View style={styles.style2}>
         <Image
           source={require('../Pics/Logo.png')}
           resizeMode="center"
-          style={{width: 100, height: 100, backgroundColor: '#C4C3BD'}}
+          style={styles.style3}
         />
       </View>
       <View>
         <Text style={styles.Text}>User Name</Text>
-        <TextInput style={styles.input}></TextInput>
+        <TextInput style={styles.input} />
         <Text style={styles.Text}>Password</Text>
-        <TextInput style={styles.input}></TextInput>
-        {/* <Separator /> */}
-        <Text style={{textAlign: 'center'}}>Forget Password</Text>
+        <TextInput style={styles.input} />
+        <Text style={styles.style4}>Forget Password</Text>
       </View>
       <Separator />
-      <View style={{ flexDirection:'row',justifyContent: 'center'}}>
-        <Button
-          title="login"
-          color="#EFD467"
-          style={styles.Button}
-          onPress={() => navigation.navigate('Users')}></Button>
-      </View>
+
+      <CBtn title={'Login'} />
     </KeyboardAvoidingView>
   );
 };
@@ -66,15 +53,16 @@ const styles = StyleSheet.create({
     fontWeight: '200',
     textAlign: 'center',
   },
-  Button:{
-    borderWidth: 20,
-    paddingVertical: 22,
-    paddingHorizontal: 32,
-    borderRadius: 10,
-    elevation: 3,
-  },
   separator: {
     marginVertical: 30,
   },
+  style1: {
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'white',
+  },
+  style2: {alignItems: 'center', marginTop: -90, marginBottom: 80, margin: 55},
+  style3: {width: 100, height: 100, backgroundColor: '#C4C3BD'},
+  style4: {textAlign: 'center'},
 });
 export default LoginList;
